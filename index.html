@@ -6,311 +6,404 @@
 <title>Erica Coppolillo — Researcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
+   :root {
     --bg: #FAFAF8;
     --surface: #F4F3EF;
     --text: #1A1A18;
     --muted: #6B6B67;
     --faint: #C8C7C0;
-    --accent: #FF6363;
-    --accent-light: #F9EAEC;
+    /*--accent: #FF5252; !* Adjusted to match the vibrant coral nodes in the image *!*/
+    /*--accent: #ec1041;*/
+    --accent: #f33f2e;
+     --tab-accent: #b8d7f1;
+     --accent-light: #FFF0F0;
     --tag-bg: #EEEDF0;
     --tag-text: #3C3A50;
     --border: rgba(0,0,0,0.08);
-    #--accent: #E75A7C;
-    #--accent-light: #F7E7EC;
   }
+
+   html {
+  scroll-behavior: smooth;
+}
 
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--bg);
     color: var(--text);
-    font-size: 16px;
-    line-height: 1.65;
+    font-size: 15px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* NAV */
-  nav {
-    position: sticky;
+  /* TWO-COLUMN SPLIT SITE LAYOUT */
+  .site-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  /* FIXED LEFT SIDEBAR WITH BACKGROUND IMAGE */
+  .left-sidebar {
+    width: 320px;
+    position: fixed;
     top: 0;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    z-index: 100;
-    padding: 0 clamp(1.5rem, 5vw, 5rem);
-  }
-  nav .inner {
-    max-width: 960px;
-    margin: 0 auto;
+    left: 0;
+    bottom: 0;
+    /* Smooth dark overlay combined with the background image for optimal legibility */
+    background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.85)), url('background.jpg') no-repeat center center;
+    background-size: cover;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    padding: 3rem 2.5rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    height: 56px;
+    z-index: 10;
+    color: #FFFFFF;
   }
-  .nav-name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.1rem;
-    letter-spacing: 0.01em;
-    color: var(--text);
-    text-decoration: none;
-  }
-  .nav-links {
+
+  .sidebar-top {
     display: flex;
-    gap: 2rem;
-    list-style: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-  .nav-links a {
-    font-size: 0.875rem;
-    color: var(--muted);
+
+  .profile-photo-container {
+    margin-bottom: 2rem;
+  }
+
+  .profile-photo-container img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid var(--accent-light);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  }
+
+  .sidebar-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.7rem;
+    color: #FFFFFF;
     text-decoration: none;
-    letter-spacing: 0.02em;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
     transition: color 0.15s;
   }
-  .nav-links a:hover { color: var(--text); }
 
-  /* LAYOUT */
-  .page {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 clamp(1.5rem, 5vw, 5rem);
+   .profile-photo-container:hover {
+    color: var(--accent);
   }
 
-  section { padding: 4.5rem 0; }
-  section + section { border-top: 1px solid var(--border); }
+  .sidebar-tagline {
+    font-size: 1.02rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--tab-accent); /* Soft light blue/indigo to match image highlights */
+    margin-bottom: 2.5rem;
+  }
+
+  /* SIDEBAR NAVIGATION */
+  .sidebar-nav {
+    width: 100%;
+  }
+
+  .sidebar-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sidebar-nav a {
+    font-size: 1.2rem;
+    color: #E5E7EB;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s, padding-left 0.15s;
+    display: block;
+  }
+
+  .sidebar-nav a:hover {
+    color: var(--accent);
+    padding-left: 4px;
+  }
+
+ .sidebar-footer {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+ .profile-photo-container img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid #E5E7EB; /* Starts slightly faded to match the resting icons */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: block;
+    transition: border-color 0.15s, transform 0.15s; /* Smooth transition matching the footer icons */
+  }
+
+  /* The same hover effects as the sidebar icons */
+  .profile-photo-container img:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+.footer-icon-link {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.15s, transform 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-icon-link:hover {
+  color: var(--tab-accent);
+  transform: translateY(-2px);
+}
+
+  /* SCROLLABLE MAIN CONTENT AREA */
+  .main-content {
+    margin-left: 320px;
+    flex: 1;
+    max-width: 960px;
+    padding: 4rem clamp(2rem, 6vw, 5rem);
+  }
 
   /* HERO */
   .hero {
-    padding: 5.5rem 0 4rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 3rem;
+    padding-bottom: 4rem;
     position: relative;
-    overflow: hidden;
   }
 
-  .hero-content {
-    max-width: 550px;
-    position: relative;
-    z-index: 2; /* Keeps text layered between the background and your photo */
-  }
-
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: -10%;
-    right: -21%;
-    bottom: -10%;
-    width: 100%;
-    background-image: url("academic_background_soft.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right center;
-    opacity: 0.85;
-    z-index: 1; /* Sits completely safely below the photo layer */
-    pointer-events: none;
-}
-
-
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-      90deg,
-      rgba(250,250,248,0.95) 0%,
-      rgba(250,250,248,0.85) 40%,
-      rgba(250,250,248,0.35) 70%,
-      rgba(250,250,248,0.15) 100%
-  );
-  z-index: -1;
-}
-  .hero-eyebrow {
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
   .hero h1 {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.5rem, 5vw, 3.75rem);
-    line-height: 1.12;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    line-height: 1.1;
     font-weight: 400;
     margin-bottom: 1.5rem;
     letter-spacing: -0.01em;
   }
+
   .hero h1 em {
     font-style: italic;
     color: var(--accent);
   }
+
   .hero-bio {
-    font-size: 1.0625rem;
-    color: black;
-    max-width: 520px;
-    line-height: 1.75;
-    margin-bottom: 2rem;
-    font-weight: 300;
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 2.5rem;
   }
+
   .hero-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 1rem;
   }
+
   .btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.4em;
+    gap: 0.5rem;
     font-size: 0.875rem;
     font-weight: 500;
-    padding: 0.5rem 1.1rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 100px;
     text-decoration: none;
     transition: all 0.15s;
-    border: 1.5px solid transparent;
   }
 
   .btn-primary {
-    font-weight: 500;
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid #e09590;
   }
+
   .btn-primary:hover {
-    font-weight: 700;
-    background: white;
-     opacity: 1;
-    /*color: #ff9898;*/
-    /*border-color: #ff9898;*/
-     color: var(--accent);
-    border-color:var(--accent);
+    background: var(--accent);
+    color: white;
+    border: 1px solid var(--accent);
   }
+
   .btn-ghost {
     background: white;
-    opacity: 0.75;
     color: var(--muted);
-    border-color: var(--faint);
+    border: 1px solid #D1CFC9;
   }
-  .btn-ghost:hover { color: var(--text); border-color: #999; background: white; opacity: 1; }
 
+  .btn-ghost:hover {
+    border-color: var(--text);
+    color: var(--text);
+  }
 
+  /* SECTION ROW MODIFICATIONS */
+  .section-row {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 3rem;
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+  }
 
-  /* SECTION HEADER */
   .section-header {
     display: flex;
     align-items: baseline;
     gap: 1rem;
     margin-bottom: 2.5rem;
   }
+
+  .section-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .section-label-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
   .section-label {
     font-size: 0.75rem;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--accent);
     white-space: nowrap;
   }
+
   .section-rule {
     flex: 1;
     height: 1px;
     background: var(--border);
   }
-  h2 {
+
+  .section-title {
     font-family: 'DM Serif Display', serif;
-    font-size: 1.875rem;
+    font-size: 1.6rem;
     font-weight: 400;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--text);
   }
 
-  /* RESEARCH INTERESTS */
+  .sidebar-link {
+    font-size: 0.875rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .sidebar-link:hover {
+    text-decoration: underline;
+  }
+
+  /* RESEARCH INTERESTS TAGS */
   .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 1.5rem;
+    gap: 0.75rem;
+    align-content: flex-start;
   }
+
   .tag {
     background: var(--tag-bg);
     color: var(--tag-text);
-    font-size: 0.875rem;
-    padding: 0.35rem 0.85rem;
+    font-size: 0.75rem;
+    padding: 0.45rem 1.1rem;
     border-radius: 100px;
     font-weight: 400;
   }
+
   .tag-accent {
     background: var(--accent-light);
     color: var(--accent);
-    font-weight: 500;
   }
 
-  /* PUBLICATIONS */
+  /* RESTRUCTURED PUBLICATIONS LIST */
   .pub-list {
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
+
   .pub {
     padding: 1.5rem 0;
     border-bottom: 1px solid var(--border);
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 1rem;
-    align-items: start;
+    gap: 1.5rem;
+    align-items: center;
   }
+
+  .pub:first-child { padding-top: 0; }
   .pub:last-child { border-bottom: none; }
+
+  .pub-details-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
   .pub-year {
-    font-size: 0.8125rem;
+    font-size: 0.85rem;
     color: var(--accent);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    margin-bottom: 0.3rem;
-    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
+
   .pub-title {
-    font-size: 0.9375rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 700;
     color: var(--text);
-    line-height: 1.45;
-    margin-bottom: 0.4rem;
   }
-  .pub-authors {
-    font-size: 0.8125rem;
-    color: var(--muted);
-  }
+
   .pub-venue {
-    font-size: 0.8125rem;
+    font-size: 0.85rem;
     color: var(--muted);
     font-style: italic;
   }
+
   .pub-badge {
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.6rem;
+    padding: 0.35rem 0.85rem;
     border-radius: 100px;
     white-space: nowrap;
-    margin-top: 0.25rem;
-    flex-shrink: 0;
   }
-  .badge-conf { background: var(--accent-light); color: var(--accent); }
-  .badge-journal { background: #E0F4FF; color: #0070D1; }
-  .badge-preprint { background: var(--surface); color: var(--muted); }
 
-  /* EXPERIENCE */
+  .badge-conf { background: var(--accent-light); color: var(--accent); }
+  .badge-journal { background: #edf5ff; color: #4c7fa6; }
+  .badge-preprint { background: #ECECEC; color: #606060; }
+
+  /* TIMELINE EXPERIENCE */
   .timeline {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0;
+    padding-left: 1.5rem;
   }
+
   .timeline::before {
     content: '';
     position: absolute;
@@ -318,22 +411,21 @@
     top: 0.5rem;
     bottom: 0.5rem;
     width: 1px;
-    background: var(--border);
+    background: #E5E3DF;
   }
+
   .tl-item {
-    display: grid;
-    grid-template-columns: 1.1fr 2fr;
-    gap: 2rem;
-    padding: 1.75rem 0 1.75rem 2rem;
-    border-bottom: 1px solid var(--border);
     position: relative;
+    padding-bottom: 2.5rem;
   }
-  .tl-item:last-child { border-bottom: none; }
+
+  .tl-item:last-child { padding-bottom: 0; }
+
   .tl-item::before {
     content: '';
     position: absolute;
-    left: -4px;
-    top: 2.1rem;
+    left: calc(-1.5rem - 4px);
+    top: 0.4rem;
     width: 9px;
     height: 9px;
     border-radius: 50%;
@@ -341,50 +433,106 @@
     border: 2px solid var(--bg);
     outline: 1px solid var(--accent);
   }
-  .tl-date {
-    font-size: 0.8125rem;
-    color: var(--muted);
-    padding-top: 0.15rem;
-    font-weight: 400;
-  }
+
   .tl-role {
-    font-weight: 500;
-    font-size: 0.9375rem;
-    margin-bottom: 0.2rem;
-  }
-  .tl-org {
-    font-size: 0.875rem;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-  }
-  .tl-desc {
-    font-size: 0.875rem;
-    color: var(--muted);
-    line-height: 1.6;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 0.25rem;
   }
 
-  /* CONTACT */
+  .tl-org {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .tl-date {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .tl-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  /* SUB TIMELINE ITEMS */
+  .tl-sub {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .tl-sub-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0.75rem;
+    row-gap: 0.15rem;
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border-left: 2px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .tl-sub-date {
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 700;
+    white-space: nowrap;
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .tl-sub-role {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--text);
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .tl-sub-desc {
+    font-size: 0.8125rem;
+    color: var(--muted);
+    line-height: 1.55;
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .pub-authors {
+    font-size: 0.8125rem;
+    color: var(--muted);
+  }
+  /* CONTACT GRID */
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     align-items: start;
   }
+
   .contact-text {
     font-size: 1.0625rem;
     color: var(--muted);
     line-height: 1.75;
     font-weight: 300;
   }
+
   .contact-links {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
   }
+
   .contact-link {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
     font-size: 0.9375rem;
     color: var(--text);
     text-decoration: none;
@@ -394,7 +542,9 @@
     transition: all 0.15s;
     background: var(--bg);
   }
+
   .contact-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
   .contact-icon {
     width: 36px;
     height: 36px;
@@ -406,73 +556,14 @@
     font-size: 16px;
     flex-shrink: 0;
   }
-  .contact-link-label { font-size: 0.8125rem; color: var(--muted); }
+
+  .contact-link-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
   .contact-link-value { font-weight: 500; font-size: 0.9rem; }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem 0;
-    text-align: center;
-    font-size: 0.8125rem;
-    color: var(--faint);
-  }
-
-  @media (max-width: 680px) {
-    .hero { grid-template-columns: 1fr; }
-    .stats-row { grid-template-columns: repeat(3, 1fr); width: 100%; }
-    .tl-item { grid-template-columns: 1fr; gap: 0.4rem; padding-left: 1.75rem; }
-    .tl-item::before { top: 0.4rem; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .pub { grid-template-columns: 1fr; }
-  }
-
-  .tl-sub {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-.tl-sub-item {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto auto;
-  column-gap: 0.75rem;
-  row-gap: 0.15rem;
-  padding: 0.75rem 1rem;
-  background: var(--surface);
-  border-left: 2px solid var(--accent);
-  border-radius: 0 6px 6px 0;
-}
-.tl-sub-date {
-  font-size: 0.75rem;
-  color: var(--accent);
-  font-weight: 500;
-  white-space: nowrap;
-  grid-column: 1;
-  grid-row: 1;
-}
-.tl-sub-role {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text);
-  grid-column: 2;
-  grid-row: 1;
-}
-.tl-sub-desc {
-  font-size: 0.8125rem;
-  color: var(--muted);
-  line-height: 1.55;
-  grid-column: 1 / -1;
-  grid-row: 2;
-}
-
-/* ENHANCED CALLOUT BOX FOR STUDENTS */
+   /* CALLOUT BOX FOR STUDENTS */
   .student-notice-box {
-    /*background: var(--accent-light);*/
-    background: rgb(240, 238, 252);
-    /*border-left: 4px solid var(--accent);*/
-     border-left: 2px solid #d1b3ff;
+    background: #edf5ff;
+    border-left: 2px solid var(--tab-accent);
     padding: 1.5rem 2rem;
     border-radius: 0 12px 12px 0;
     margin-top: 2rem;
@@ -482,11 +573,13 @@
     gap: 1.25rem;
     box-shadow: 0 4px 20px rgba(224, 78, 110, 0.03);
   }
+
   .student-notice-icon {
     font-size: 1.5rem;
     color: var(--accent);
     line-height: 1;
   }
+
   .student-notice-text {
     font-size: 0.8rem;
     color: var(--text);
@@ -494,6 +587,7 @@
     font-weight: 400;
     line-height: 1.5;
   }
+
   .student-notice-text a {
     color: var(--accent);
     text-decoration: none;
@@ -501,371 +595,470 @@
     border-bottom: 1px dotted var(--accent);
     transition: color 0.15s, border-color 0.15s;
   }
+
   .student-notice-text a:hover {
     color: #c93b59;
     border-bottom-style: solid;
   }
+
+  .hero-eyebrow {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: black;
+    margin-bottom: 1.5rem;
+  }
+
+  /* RESPONSIVE DESIGN FOR SMALLER SCREENS */
+  @media (max-width: 992px) {
+    .site-container {
+      flex-direction: column;
+    }
+
+    .left-sidebar {
+      position: relative;
+      width: 100%;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem 2rem 2rem;
+    }
+
+    .sidebar-nav ul {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .sidebar-tagline {
+      margin-bottom: 1.5rem;
+    }
+
+    .main-content {
+      margin-left: 0;
+      width: 100%;
+      padding: 3rem 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .section-row {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 3rem 0;
+    }
+
+    .pub {
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+    }
+
+    .pub-year {
+      grid-column: 1 / -1;
+      margin-bottom: -0.5rem;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 </head>
+
 <body>
 
-<nav>
-  <div class="inner">
-    <a href="#" class="nav-name">Erica Coppolillo</a>
-    <ul class="nav-links">
-      <li><a href="#research">Research</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#teaching">Teaching</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="site-container">
 
-<div class="page">
+  <aside class="left-sidebar">
+    <div class="sidebar-top">
+      <div class="profile-photo-container"><a href="#">
+        <img src="foto.jpeg" alt="Erica Coppolillo">
+      </a>
+      </div>
+      <a class="sidebar-name">Erica Coppolillo</a>
+      <p class="sidebar-tagline">Postdoctoral Researcher &middot; ICAR-CNR</p>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-content">
-    <div>
-      <p class="hero-eyebrow">Postdoctoral Researcher · ICAR-CNR, Italy</p>
-      <h1>Erica Coppolillo<br></h1>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
 
+    <div class="sidebar-footer">
+      <!-- Email -->
+      <a href="mailto:erica.coppolillo@icar.cnr.it" class="footer-icon-link" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
+  <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803 3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671"/>
+  <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791"/>
+</svg></a>
 
+      <!-- GITHUB -->
+      <a href="https://github.com/EricaCoppolillo" target="_blank" class="footer-icon-link" title="GITHUB" style="font-weight: bold; font-size: 0.95rem; font-family: monospace;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+</svg></a>
+
+      <!-- Google Scholar -->
+      <a href="https://scholar.google.com/citations?user=XagpT-oAAAAJ" target="_blank" class="footer-icon-link" title="Google Scholar">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+  <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
+</svg></a>
+        <a href="https://www.linkedin.com/in/erica-coppolillo-8683301b1/" target="_blank" class="footer-icon-link" title="LinkedIn">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+</svg>      </a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <section class="hero" id="about">
+      <p class="hero-eyebrow">Postdoctoral Researcher &middot; ICAR-CNR, Italy</p>
+      <h1>Erica <em>Coppolillo</em></h1>
       <p class="hero-bio">
-        I study the intersection of AI and social networks, understanding how algorithms shape opinion, engagement, and information dynamics in online communities.
+        Algorithms decide what you see, who you hear, and what you come to believe. <strong>But at what cost?</strong>
+        <br>
+        <br>
+        To address this question, my research explores the intersection of AI and social networks, studying how algorithms shape opinions, drive engagement, and influence the flow of information in online communities.
+        Starting from Recommender Systems, I am now focused on Large Language Models (LLMs), addressing their intrinsic biases across different perspectives.
+        <br>
+        <br>
+        I recently earned my PhD from the University of Calabria, Italy, under the supervision of Professors <a href="https://www.unical.it/storage/teachers/francesco.calimeri/">Francesco Calimeri</a>,
+       <a href="https://www.unical.it/storage/teachers/simona.perri/">Simona Perri</a>, and <a href="https://gmanco.github.io/">Giuseppe Manco</a>.
+        I am currently a postdoctoral researcher at ICAR-CNR, as a member of the <a href="https://www.icar.cnr.it/gruppi-di-ricerca/behavioral-modeling-and-scalable-analytics/">BMSA group</a>.
+        <br>
+        <br>
+        Ultimately, I aim to make AI systems more transparent, accountable, and aligned with human well-being, helping ensure that the technologies we interact with every day <i>serve</i> people rather than silently shape them.
+
+<!--        My work posits at the intersection of AI and social networks, with a strong focus on understanding how algorithms <b>shape</b> opinion, engagement, and information dynamics in online communities.-->
+<!--        I recently defended my PhD thesis at the University of Calabria, Italy, under the supervision of professors <a href="https://scholar.google.com/citations?user=XagpT-oAAAAJ">Francesco Calimeri</a>,-->
+<!--        <a href="https://scholar.google.com/citations?user=XagpT-oAAAAJ">Simona Perri</a>, and <a href="https://scholar.google.com/citations?user=XagpT-oAAAAJ">Giuseppe Manco</a>, and I am currently a postdoctoral researcher at ICAR-CNR, Italy.-->
+
+<!--        In my research, I am particularly interested in discovering - and potentially mitigating - detrimental effects over users induced by the long-term interactions with AI algorithms (such as recommender systems and Large Language Models).-->
       </p>
       <div class="hero-links">
-        <a href="Extended%20English%20CV.pdf" download="Erica_Coppolillo_CV.pdf" target="_blank" class="btn btn-primary">Curriculum Vitae ↓</a>
+        <a href="Extended%20English%20CV.pdf" download="Erica_Coppolillo_CV.pdf" target="_blank" class="btn btn-primary">Curriculum Vitae <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+</svg></a>
         <a href="https://scholar.google.com/citations?user=XagpT-oAAAAJ" target="_blank" class="btn btn-ghost">Google Scholar</a>
         <a href="https://www.linkedin.com/in/erica-coppolillo-8683301b1/" target="_blank" class="btn btn-ghost">LinkedIn</a>
       </div>
-    </div>
-<!--      <img src="foto.jpeg" alt="Erica Coppolillo" style="-->
-<!--        width: 150px;-->
-<!--        height: 150px;-->
-<!--        top: 5rem;-->
-<!--        right: 10rem;-->
-<!--        border-radius: 50%;-->
-<!--        object-fit: cover;-->
-<!--        object-position: center top;-->
-<!--        flex-shrink: 0;-->
-<!--        border: 3px solid #ff9898;-->
-<!--    ">-->
-      </div>
-        <img src="foto.jpeg" alt="Erica Coppolillo" style="
-      position: absolute;
-      top: 5rem;
-      right: 5rem;
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
-      border: 3px solid #ff9898;
-      z-index: 5;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    ">
-  </div>
+    </section>
 
-  <!-- RESEARCH -->
-  <section id="research">
-    <div class="section-header">
-      <span class="section-label">Research interests</span>
-      <div class="section-rule"></div>
-    </div>
-    <h2>At the edge of AI and society</h2>
-    <p style="color: var(--muted); font-weight: 300; font-size: 1.0625rem; max-width: 620px; line-height: 1.75;">
-      My work spans recommender systems, large language models, and the societal implications of AI, with a particular focus on algorithmic bias, opinion dynamics and social network analysis. I also study the intersection between deep learning and knowledge representation.
-    </p>
-    <div class="tags">
-      <span class="tag tag-accent">Large Language Models</span>
-      <span class="tag tag-accent">Social Network Analysis</span>
-      <span class="tag tag-accent">Recommender Systems</span>
-      <span class="tag tag-accent">Algorithmic Bias</span>
-      <span class="tag">Opinion Dynamics</span>
-      <span class="tag">Knowledge Representation</span>
-      <span class="tag">Deep Learning</span>
-    </div>
-  </section>
-
-  <!-- PUBLICATIONS -->
-  <section id="publications">
-    <div class="section-header">
-      <span class="section-label">Selected publications</span>
-      <div class="section-rule"></div>
-    </div>
-    <h2>Recent work</h2>
-    <div class="pub-list">
-
-      <div class="pub">
-        <div>
-          <div class="pub-year">2026</div>
-          <div class="pub-title">Fine-tuning LLMs for Answer Set Programming</div>
-          <div class="pub-authors">Erica Coppolillo, Francesco Calimeri, Giuseppe Manco, Simona Perri and Francesco Ricca</div>
-          <div class="pub-venue">Journal of Intelligent Information Systems</div>
+    <section class="section-row" id="research">
+      <div class="section-sidebar">
+        <div class="section-label-container">
+          <span class="section-label">Research Interests</span>
+          <div class="section-rule"></div>
         </div>
-        <span class="pub-badge badge-journal">Journal</span>
+        <h2 class="section-title">At the edge of AI and society</h2>
       </div>
 
-      <div class="pub">
-        <div>
-          <div class="pub-year">2026</div>
-          <div class="pub-title">MOSAIC: Unveiling the Moral, Social and Individual Dimensions of Large Language Models</div>
-          <div class="pub-authors">Erica Coppolillo and Emilio Ferrara</div>
+      <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <p style="color: var(--muted); font-size: 0.9rem; font-weight: 300; margin: 0; max-width: 680px;">
+My research sits at the intersection of AI and its societal implications. I investigate algorithmic bias, opinion formation and diffusion, and the dynamics of complex social networks.<br><br>
+          I began my PhD studying Recommender Systems and their associated noxious phenomena, such as popularity bias and information homogenization. Then, I have shifted focus to LLMs and autonomous agents.
 
-          <div class="pub-venue">arXiv</div>
+          <br><br>
+          My current work examines the intrinsic biases of these systems and their capacity to reshape social communities by steering human engagement.
+Alongside this, I am interested in grounding LLMs within structured knowledge and symbolic reasoning frameworks, such as knowledge graphs and logic programming, to advance the development of knowledge-aware AI systems.        </p>
+
+        <div class="tags">
+          <span class="tag tag-accent">Large Language Models</span>
+          <span class="tag tag-accent">Social Science</span>
+          <span class="tag tag-accent">Algorithmic Bias</span>
+          <span class="tag">Recommender Systems</span>
+          <span class="tag">Opinion Dynamics</span>
+          <span class="tag">Knowledge Representation</span>
+<!--          <span class="tag">Logic Programming</span>-->
         </div>
-        <span class="pub-badge badge-preprint">Preprint</span>
       </div>
+    </section>
 
-      <div class="pub">
-        <div>
-        <div class="pub-year">2026</div>
-          <div class="pub-title">Harm in AI-Driven Societies: An Audit of Toxicity Adoption on Chirper.ai</div>
-          <div class="pub-authors">Erica Coppolillo, Luca Luceri and Emilio Ferrara</div>
-          <div class="pub-venue">arXiv</div>
+    <section class="section-row" id="publications">
+      <div class="section-sidebar">
+        <div class="section-label-container">
+          <span class="section-label">Selected Publications</span>
+          <div class="section-rule"></div>
         </div>
-        <span class="pub-badge badge-preprint">Preprint</span>
+        <h2 class="section-title">Recent work</h2>
+        <a href="https://scholar.google.com/citations?user=XagpT-oAAAAJ" target="_blank" class="sidebar-link">View all on Google Scholar <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+</svg>
+        </a>
       </div>
 
-      <div class="pub">
-        <div>
-          <div class="pub-year">2025</div>
-          <div class="pub-title">Women who hate men: a comparative analysis across extremist Reddit communities</div>
-          <div class="pub-authors">Erica Coppolillo</div>
-          <div class="pub-venue">Scientific Reports</div>
+      <div class="pub-list">
+        <div class="pub">
+          <div class="pub-details-wrapper">
+            <div class="pub-year">2026</div>
+            <div class="pub-title">Fine-tuning LLMs for Answer Set Programming</div>
+            <div class="pub-authors">Erica Coppolillo, Francesco Calimeri, Giuseppe Manco, Simona Perri and Francesco Ricca</div>
+
+            <div class="pub-venue">Journal of Intelligent Information Systems</div>
+          </div>
+          <span class="pub-badge badge-journal">Journal</span>
         </div>
-        <span class="pub-badge badge-journal">Journal</span>
-      </div>
 
-      <div class="pub">
-        <div>
-          <div class="pub-year">2025</div>
-          <div class="pub-title">Unmasking conversational bias in ai multiagent systems</div>
-          <div class="pub-authors">Erica Coppolillo, Giuseppe Manco and Luca Maria Aiello</div>
-          <div class="pub-venue">arXiv</div>
+        <div class="pub">
+          <div class="pub-details-wrapper">
+            <div class="pub-year">2026</div>
+            <div class="pub-title">MOSAIC: Unveiling the Moral, Social and Individual Dimensions of Large Language Models</div>
+                        <div class="pub-authors">Erica Coppolillo and Emilio Ferrara</div>
+
+            <div class="pub-venue">arXiv</div>
+          </div>
+          <span class="pub-badge badge-preprint">Preprint</span>
         </div>
-        <span class="pub-badge badge-preprint">Preprint</span>
-      </div>
 
-      <div class="pub">
-        <div>
-          <div class="pub-year">2025</div>
-          <div class="pub-title">Engagement-Driven Content Generation with Large Language Models</div>
-          <div class="pub-authors">Erica Coppolillo, Federico Cinus, Marco Minici, Francesco Bonchi and Giuseppe Manco</div>
-          <div class="pub-venue">ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)</div>
+        <div class="pub">
+          <div class="pub-details-wrapper">
+            <div class="pub-year">2026</div>
+            <div class="pub-title">Harm in AI-Driven Societies: An Audit of Toxicity Adoption on Chirper.ai</div>
+                        <div class="pub-authors">Erica Coppolillo, Luca Luceri and Emilio Ferrara</div>
+
+            <div class="pub-venue">arXiv</div>
+          </div>
+          <span class="pub-badge badge-preprint">Preprint</span>
         </div>
-        <span class="pub-badge badge-conf">Conference</span>
-      </div>
 
-      <div class="pub">
-        <div>
-          <div class="pub-year">2025</div>
-          <div class="pub-title">Algorithmic Drift: A Simulation Framework to Study the Effects of Recommender Systems on User Preferences</div>
-          <div class="pub-authors">Erica Coppolillo, Simone Mungari, Francesco Fabbri, Marco Minici, Francesco Bonchi and Giuseppe Manco</div>
-          <div class="pub-venue">Information Processing &amp; Management</div>
+        <div class="pub">
+          <div class="pub-details-wrapper">
+            <div class="pub-year">2025</div>
+            <div class="pub-title">Women who hate men: a comparative analysis across extremist Reddit communities</div>
+                        <div class="pub-authors">Erica Coppolillo</div>
+
+            <div class="pub-venue">Scientific Reports</div>
+          </div>
+          <span class="pub-badge badge-journal">Journal</span>
         </div>
-        <span class="pub-badge badge-journal">Journal</span>
-      </div>
 
-      <div class="pub">
-        <div>
-          <div class="pub-year">2025</div>
-          <div class="pub-title">Relevance meets diversity: A user-centric framework for knowledge exploration through recommendations</div>
-          <div class="pub-authors">Erica Coppolillo, Giuseppe Manco and Aristides Gionis</div>
-          <div class="pub-venue">ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)</div>
+        <div class="pub">
+          <div class="pub-details-wrapper">
+            <div class="pub-year">2025</div>
+            <div class="pub-title">Unmasking conversational bias in ai multiagent systems</div>
+                        <div class="pub-authors">Erica Coppolillo, Giuseppe Manco and Luca Maria Aiello</div>
+
+            <div class="pub-venue">arXiv</div>
+          </div>
+          <span class="pub-badge badge-preprint">Preprint</span>
         </div>
-        <span class="pub-badge badge-conf">Conference</span>
-      </div>
 
-      <div class="pub">
-        <div>
-          <div class="pub-year">2024</div>
-          <div class="pub-title">Balanced Quality Score (BQS): Measuring Popularity Debiasing in Recommendation</div>
-          <div class="pub-authors">Erica Coppolillo, Marco Minici, Ettore Ritacco, Luciano Caroprese, Francesco Pisani and Giuseppe Manco</div>
-          <div class="pub-venue">ACM Transactions on Intelligent Systems and Technology</div>
+        <div class="pub">
+          <div class="pub-details-wrapper">
+            <div class="pub-year">2025</div>
+            <div class="pub-title">Engagement-Driven Content Generation with Large Language Models</div>
+                        <div class="pub-authors">Erica Coppolillo, Federico Cinus, Marco Minici, Francesco Bonchi and Giuseppe Manco</div>
+
+            <div class="pub-venue">ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)</div>
+          </div>
+          <span class="pub-badge badge-conf">Conference</span>
         </div>
-        <span class="pub-badge badge-journal">Journal</span>
-      </div>
 
-      <div class="pub">
-        <div>
-          <div class="pub-year">2024</div>
-          <div class="pub-title">LLASP: Fine-tuning Large Language Models for Answer Set Programming</div>
-          <div class="pub-authors">Erica Coppolillo, Francesco Calimeri, Giuseppe Manco, Simona Perri and Francesco Ricca</div>
-          <div class="pub-venue">International Conference on Principles of Knowledge Representation and Reasoning (KR)</div>
+        <div class="pub">
+          <div class="pub-details-wrapper">
+            <div class="pub-year">2025</div>
+            <div class="pub-title">Algorithmic Drift: A Simulation Framework to Study the Effects of Recommender Systems on User Preferences</div>
+                        <div class="pub-authors">Erica Coppolillo, Simone Mungari, Francesco Fabbri, Marco Minici, Francesco Bonchi and Giuseppe Manco</div>
+
+            <div class="pub-venue">Information Processing &amp; Management</div>
+          </div>
+          <span class="pub-badge badge-journal">Journal</span>
         </div>
-        <span class="pub-badge badge-conf">Conference</span>
+
+        <div class="pub">
+          <div class="pub-details-wrapper">
+            <div class="pub-year">2024</div>
+            <div class="pub-title">Relevance meets diversity: A user-centric framework for knowledge exploration through recommendations</div>
+                        <div class="pub-authors">Erica Coppolillo, Giuseppe Manco and Aristides Gionis</div>
+
+            <div class="pub-venue">ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)</div>
+          </div>
+          <span class="pub-badge badge-conf">Conference</span>
+        </div>
+
+        <div class="pub">
+          <div class="pub-details-wrapper">
+            <div class="pub-year">2024</div>
+            <div class="pub-title">Balanced Quality Score (BQS): Measuring Popularity Debiasing in Recommendation</div>
+                        <div class="pub-authors">Erica Coppolillo, Marco Minici, Ettore Ritacco, Luciano Caroprese, Francesco Pisani and Giuseppe Manco</div>
+
+            <div class="pub-venue">ACM Transactions on Intelligent Systems and Technology</div>
+          </div>
+          <span class="pub-badge badge-journal">Journal</span>
+        </div>
+
+        <div class="pub">
+          <div class="pub-details-wrapper">
+            <div class="pub-year">2024</div>
+            <div class="pub-title">LLASP: Fine-tuning Large Language Models for Answer Set Programming</div>
+                        <div class="pub-authors">Erica Coppolillo, Francesco Calimeri, Giuseppe Manco, Simona Perri and Francesco Ricca</div>
+
+            <div class="pub-venue">International Conference on Principles of Knowledge Representation and Reasoning (KR)</div>
+          </div>
+          <span class="pub-badge badge-conf">Conference</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-row" id="teaching">
+      <div class="section-sidebar">
+        <div class="section-label-container">
+          <span class="section-label">Teaching</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2 class="section-title">Teaching activity</h2>
       </div>
 
-    </div>
-    <div style="margin-top: 1.5rem;">
-      <a href="https://scholar.google.com/citations?user=XagpT-oAAAAJ" target="_blank" class="btn btn-ghost">View all on Google Scholar →</a>
-    </div>
-  </section>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">2023 &ndash; present</div>
+          <div>
+            <div class="tl-role">Teaching Assistant</div>
+            <div class="tl-org">University of Calabria, Rende</div>
+            <div class="tl-desc">"Elementi di Informatica Teorica" course, at the Department of Mathematics and Computer Science.</div>
 
-  <section id="teaching">
-  <div class="section-header">
-    <span class="section-label">Teaching</span>
-    <div class="section-rule"></div>
-  </div>
-  <h2>Teaching activity</h2>
-  <div class="timeline">
+            <div class="student-notice-box">
+              <div class="student-notice-icon">🎓</div>
+              <p class="student-notice-text">
+                Are you a student looking for a <strong>thesis</strong>? If you are interested in exploring any of my research topics, feel free to <a href="#contact">get in touch</a>!
+              </p>
+            </div>
+          </div>
+        </div>
 
-    <div class="tl-item">
-      <div class="tl-date">2023 – present</div>
-      <div>
-        <div class="tl-role">Teaching Assistant</div>
-        <div class="tl-org">University of Calabria, Rende</div>
-        <div class="tl-desc">"Elementi di Informatica Teorica" course, at the Department of Mathematics and Computer Science.</div>
+        <div class="tl-item">
+          <div class="tl-date">2023</div>
+          <div>
 
-        <div class="student-notice-box">
-          <div class="student-notice-icon">🎓</div>
-          <p class="student-notice-text">
-            Are you a student looking for a <strong>thesis</strong>? If you are interested in exploring any of my research topics, feel free to <a href="#contact">get in touch</a>!
+            <div class="tl-role">"Coding Girls" Tutoring</div>
+            <div class="tl-org">Liceo Scientifico "Fermi", Cosenza</div>
+            <div class="tl-desc">Tutoring in "Coding Girls" Project, supported by "Fondazione Digitale".</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-row" id="experience">
+      <div class="section-sidebar">
+        <div class="section-label-container">
+          <span class="section-label">Experience</span>
+          <div class="section-rule"></div>
+        </div>
+        <h2 class="section-title">Academic path</h2>
+        <a href="Extended%20English%20CV.pdf" download="Erica_Coppolillo_CV.pdf" target="_blank" class="sidebar-link">Download my CV <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+</svg></a>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-date">2026 &ndash; present</div>
+
+          <div class="tl-role">Postdoctoral Researcher</div>
+          <div class="tl-org">ICAR-CNR, Rende</div>
+          <div class="tl-desc">Research on LLMs, social dynamics, and algorithmic bias at the Institute for High Performance Computing and Networking.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">2022 &ndash; 2026</div>
+
+          <div class="tl-role">PhD Student</div>
+          <div class="tl-org">University of Calabria &amp; ICAR-CNR</div>
+          <div class="tl-desc">Doctoral research on recommender systems, LLMs, algorithmic bias, and social dimensions of AI. Advised by F. Calimeri, G. Manco, and S. Perri.</div>
+
+          <div class="tl-sub">
+            <div class="tl-sub-item">
+              <span class="tl-sub-date">2025 &ndash; 2026</span>
+              <span class="tl-sub-role">Visiting Scholar &middot; USC, Los Angeles</span>
+              <span class="tl-sub-desc">6 months advised by Emilio Ferrara and Luca Luceri, on detrimental phenomena induced by LLM-based agents.</span>
+            </div>
+            <div class="tl-sub-item">
+              <span class="tl-sub-date">2022 &ndash; 2023</span>
+              <span class="tl-sub-role">PhD Traineeship &middot; KTH, Stockholm</span>
+              <span class="tl-sub-desc">6 months advised by Aristides Gionis, on the relevance-diversity trade-off in recommendation.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">2020 &ndash; 2022</div>
+
+          <div class="tl-role">MSc in Computer Science</div>
+          <div class="tl-org">University of Calabria, Rende, Italy</div>
+          <div class="tl-desc">Graduate studies with specialization in Artificial Intelligence and Cybersecurity.</div>
+          <div class="tl-sub">
+            <div class="tl-sub-item">
+              <span class="tl-sub-date">2022</span>
+              <span class="tl-sub-role">Erasmus Traineeship+ &middot; Eurecat, Barcelona</span>
+              <span class="tl-sub-desc">4 months advised by Francesco Bonchi, on the long-term social impact of recommender systems.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-date">2017 &ndash; 2020</div>
+
+          <div class="tl-role">BSc in Computer Science</div>
+          <div class="tl-org">University of Calabria</div>
+          <div class="tl-desc">Undergraduate studies in Computer Science.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-header">
+        <span class="section-label">Contact</span>
+        <div class="section-rule"></div>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <h2 class="section-title">Get in touch</h2>
+          <p class="contact-text" style="margin-top: 1rem;">
+            I am always open to discussing research, potential collaborations, or opportunities within the AI community. Feel free to reach out!
           </p>
         </div>
-      </div>
-    </div>
-
-     <div class="tl-item">
-      <div class="tl-date">2023</div>
-      <div>
-        <div class="tl-role">"Coding Girls" Tutoring
-        </div>
-        <div class="tl-org">Liceo Scientifico "Fermi", Cosenza</div>
-        <div class="tl-desc">Tutoring in "Coding Girls" Project, supported by "Fondazione Digitale".</div>
-
-      </div>
-
-    </div>
-  </div>
-
-
-  <!-- EXPERIENCE -->
- <section id="experience">
-  <div class="section-header">
-    <span class="section-label">Experience</span>
-    <div class="section-rule"></div>
-  </div>
-  <h2>Academic path</h2>
-  <div class="timeline">
-
-    <div class="tl-item">
-      <div class="tl-date">2026 – present</div>
-      <div>
-        <div class="tl-role">Postdoctoral Researcher</div>
-        <div class="tl-org">ICAR-CNR, Rende</div>
-        <div class="tl-desc">Research on LLMs, social dynamics, and algorithmic bias at the Institute for High Performance Computing and Networking.</div>
-
-      </div>
-    </div>
-
-
-
-    <div class="tl-item">
-      <div class="tl-date">2022 – 2026</div>
-      <div>
-        <div class="tl-role">PhD Student</div>
-        <div class="tl-org">University of Calabria &amp; ICAR-CNR</div>
-        <div class="tl-desc">Doctoral research on recommender systems, LLMs, algorithmic bias, and social dimensions of AI. Advised by F. Calimeri, G. Manco, and S. Perri.</div>
-
-        <div class="tl-sub">
-          <div class="tl-sub-item">
-            <span class="tl-sub-date">2025 – 2026</span>
-            <span class="tl-sub-role">Visiting Scholar · USC, Los Angeles</span>
-            <span class="tl-sub-desc">6 months advised by Emilio Ferrara and Luca Luceri, on detrimental phenomena induced by LLM-based agents.</span>
-          </div>
-        </div>
-
-        <div class="tl-sub">
-          <div class="tl-sub-item">
-            <span class="tl-sub-date">2022 – 2023</span>
-            <span class="tl-sub-role">PhD Traineeship · KTH, Stockholm</span>
-            <span class="tl-sub-desc">6 months advised by Aristides Gionis, on the relevance-diversity trade-off in recommendation.</span>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-
-    <div class="tl-item">
-      <div class="tl-date">2020 – 2022</div>
-      <div>
-        <div class="tl-role">MSc in Computer Science</div>
-        <div class="tl-org">University of Calabria, Rende, Italy</div>
-        <div class="tl-desc">Graduate studies with specialization in Artificial Intelligence and Cybersecurity.</div>
-        <div class="tl-sub">
-          <div class="tl-sub-item">
-            <span class="tl-sub-date">2022</span>
-            <span class="tl-sub-role">Erasmus Traineeship+ · Eurecat, Barcelona</span>
-            <span class="tl-sub-desc">4 months advised by Francesco Bonchi, on the long-term social impact of recommender systems.</span>
-          </div>
+        <div class="contact-links">
+          <a href="mailto:erica.coppolillo@icar.cnr.it" class="contact-link">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
+  <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803 3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671"/>
+  <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791"/>
+</svg></div>
+            <div>
+              <div class="contact-link-label">Email</div>
+              <div class="contact-link-value">erica.coppolillo@icar.cnr.it</div>
+            </div>
+          </a>
+          <a href="https://www.icar.cnr.it/en/persone/coppolillo/" target="_blank" class="contact-link">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building-fill" viewBox="0 0 16 16">
+  <path d="M3 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h3v-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V16h3a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zm1 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5M4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM7.5 5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5m2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM4.5 8h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5m2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
+</svg></div>
+            <div>
+              <div class="contact-link-label">Institution</div>
+              <div class="contact-link-value">ICAR-CNR, Rende, Italy</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/erica-coppolillo-8683301b1/" target="_blank" class="contact-link">
+            <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+</svg>  </div>
+            <div>
+              <div class="contact-link-label">LinkedIn</div>
+              <div class="contact-link-value">erica-coppolillo</div>
+            </div>
+          </a>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="tl-item">
-      <div class="tl-date">2017 – 2020</div>
-      <div>
-        <div class="tl-role">BSc in Computer Science</div>
-        <div class="tl-org">University of Calabria</div>
-        <div class="tl-desc">Undergraduate studies in Computer Science.</div>
-      </div>
-    </div>
-
-  </div>
-       <div style="margin-top: 1.5rem;">
-      <a href="Extended%20English%20CV.pdf" target="_blank" class="btn btn-ghost">Download my CV ↓</a>
-    </div>
-</section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-header">
-      <span class="section-label">Contact</span>
-      <div class="section-rule"></div>
-    </div>
-    <div class="contact-grid">
-      <div>
-        <h2>Get in touch</h2>
-        <p class="contact-text" style="margin-top: 1rem;">
-          I am always open to discussing research, potential collaborations, or opportunities within the AI community. Feel free to reach out!
-        </p>
-      </div>
-      <div class="contact-links">
-        <a href="mailto:erica.coppolillo@icar.cnr.it" class="contact-link">
-          <div class="contact-icon">✉</div>
-          <div>
-            <div class="contact-link-label">Email</div>
-            <div class="contact-link-value">erica.coppolillo@icar.cnr.it</div>
-          </div>
-        </a>
-        <a href="https://www.icar.cnr.it/en/persone/coppolillo/" target="_blank" class="contact-link">
-          <div class="contact-icon">🏛</div>
-          <div>
-            <div class="contact-link-label">Institution</div>
-            <div class="contact-link-value">ICAR-CNR, Rende, Italy</div>
-          </div>
-        </a>
-        <a href="https://www.linkedin.com/in/erica-coppolillo-8683301b1/" target="_blank" class="contact-link">
-          <div class="contact-icon">in</div>
-          <div>
-            <div class="contact-link-label">LinkedIn</div>
-            <div class="contact-link-value">erica-coppolillo</div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
+  </main>
 </div>
-
-<footer>
-  <div class="page">Erica Coppolillo · Postdoctoral Researcher · ICAR-CNR · Updated June 2026</div>
-</footer>
 
 </body>
 </html>
